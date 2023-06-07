@@ -75,7 +75,7 @@ const snakeGame = () => {
 
         html += `<div class="head" style="grid-area : ${snakeBody[i][1]} / ${snakeBody[i][0]}"></div>`; // CREATE SNAKE
 
-        // GAME OVER CODE WHILE SNAKE THE BODY
+        // GAME OVER CODE WHILE SNAKE TOUCH HIS BODY
         if(i !== 0 && snakeBody[0][1] === snakeBody[i][1] && snakeBody[0][0] === snakeBody[i][0]) { 
             gameOver = true;
         }
