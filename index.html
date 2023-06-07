@@ -1,14 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS FILE LINK -->
+    <link rel="stylesheet" href="./index.css" />
+    <!-- CDN JS LINK -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>SNAKE GAME</title>
 </head>
+
 <body>
-    <i class="fa fa-gear"></i>
-    <h1>Welcome to Snake Game Page !</h1>
+    <div class="container">
+        <div class="game-details">
+            <div class="setting-box">
+                <div class="element-box">
+                    <label for="default">Set Default</label>
+                    <input type="checkbox" id="default" />
+                </div>
+                <div class="element-box">
+                    <label for="detail-color">Set Detail Box Color</label>
+                    <input type="color" id="detail-color" />
+                </div>
+                <div class="element-box">
+                    <label for="board-color">Set Play Board Color</label>
+                    <input type="color" id="board-color" />
+                </div>
+                <div class="element-box">
+                    <label for="snake-color">Set Snake Color</label>
+                    <input type="color" id="snake-color" />
+                </div>
+                <div class="element-box">
+                    <label for="food-color">Set Food Color</label>
+                    <input type="color" id="food-color" />
+                </div>
+                <div class="element-box">
+                    <select id="speed">
+                        <option value="choose speed">Choose Speed</option>
+                        <option value="100">Low</option>
+                        <option value="125">Medium</option>
+                        <option value="50">High</option>
+                    </select>
+                </div>
+                <div class="element-box">
+                    <button>Save Changes</button>
+                </div>
+            </div>
+            <i class="fa fa-gear setting-btn" style="cursor: pointer;"></i>
+            <span>Current Score : 0</span>
+            <span>High Score : 300</span>
+        </div>
+        <div class="game-board"></div>
+        <div class="controls">
+            <i class="fa-solid fa-arrow-left-long"></i>
+            <i class="fa-solid fa-arrow-up-long"></i>
+            <i class="fa-solid fa-arrow-down-long"></i>
+            <i class="fa-solid fa-arrow-right-long"></i>
+        </div>
+    </div>
+
+    <!-- JS FILE LINK -->
+    <script src="./index.js"></script>
 </body>
+
 </html>
