@@ -4,6 +4,7 @@ let setBox = document.querySelector(".setting-box");
 let gameBoard = document.querySelector(".game-board");
 let scoreEl = document.querySelector(".score");
 let highScoreEl = document.querySelector(".high-score");
+let controls = document.querySelectorAll(".controls i");
 
 // SETTING BUTTON CODING
 setBtn.addEventListener("click", () => {
@@ -45,6 +46,13 @@ const handleGameOver = () => {
     // })
     location.reload();
 }
+
+// HANDLE CONTOLES BUTTONS FOR MOBILE
+controls.forEach((key) => {
+    key.addEventListener("click", () => {
+        direction({key: key.dataset.key}); // calling
+    })
+})
 
 // SNAKE GAME FUNCTION CODING
 const snakeGame = () => {
