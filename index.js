@@ -6,6 +6,16 @@ let scoreEl = document.querySelector(".score");
 let highScoreEl = document.querySelector(".high-score");
 let controls = document.querySelectorAll(".controls i");
 
+// SETTING VARIABLES
+let set_btn = document.querySelector("#set-btn");
+let defaultEl = document.querySelector("#default");
+let detailEl = document.querySelector("#detail-color");
+let boardEl = document.querySelector("#board-color");
+let snakeEl = document.querySelector("#snake-color");
+let foodEl = document.querySelector("#food-color");
+let speedEl = document.querySelector("#speed");
+
+
 // SETTING BUTTON CODING
 setBtn.addEventListener("click", () => {
     setBox.classList.toggle("active"); 
@@ -20,6 +30,21 @@ let sankeX = 5, snakeY = 10;
 let velocityX = 0, velocityY = 0;
 let setIntervalId;
 let score = 0;
+
+// GET SETTING DETAILS FROM LOCAL STORAGE
+if(localStorage.getItem("details") != null) {
+    const all_details = JSON.parse(localStorage.getItem("details"));
+
+    detailEl.value = all_details.detail_color;
+    boardEl.value = all_details.board_color;
+    snakeEl.value = all_details.snake_color;
+    foodEl.value = all_details.food_color;
+    speedEl.value = all_details.speed;
+
+    if(all_details.active == false) {
+        defaultEl.checked = true;
+    }
+}
 
 // GET HIGH SCORE FROM LOCAL STORAGE
 let highScore = localStorage.getItem("high-score") || 0;
@@ -127,3 +152,31 @@ setIntervalId = setInterval(snakeGame, 125); // calling...
 
 // KEY DOWN EVENT LISTNER FUNCTION
 document.addEventListener('keydown', direction);
+
+// START SETTING BUTTON CODING
+set_btn.onclick = function() {
+    if(defaultEl.checked == true) {
+        const set_data = {
+            detail_color: "#293447",
+            board_color: "#212837",
+            snake_color: "#60cbff",
+            food_color: "#ff003d",
+            speed: 125,
+            active: false
+        }
+
+        localStorage.setItem("details", JSON.stringify(set_data));
+    }
+    else {
+        const set_data = {
+            detail_color: detailEl.value,
+            board_color: boardEl.value,
+            snake_color: snakeEl.value,
+            food_color: foodEl.value,
+            speed: speedEl.value,
+            active: true
+        }
+
+        localStorage.setItem("details", JSON.stringify(set_data));
+    }
+}
