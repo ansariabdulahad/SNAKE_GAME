@@ -5,6 +5,7 @@ let gameBoard = document.querySelector(".game-board");
 let scoreEl = document.querySelector(".score");
 let highScoreEl = document.querySelector(".high-score");
 let controls = document.querySelectorAll(".controls i");
+let container = document.querySelector(".container");
 
 // SETTING VARIABLES
 let set_btn = document.querySelector("#set-btn");
@@ -30,6 +31,7 @@ let sankeX = 5, snakeY = 10;
 let velocityX = 0, velocityY = 0;
 let setIntervalId;
 let score = 0;
+let speed = 125;
 
 // GET SETTING DETAILS FROM LOCAL STORAGE
 if(localStorage.getItem("details") != null) {
@@ -44,6 +46,14 @@ if(localStorage.getItem("details") != null) {
     if(all_details.active == false) {
         defaultEl.checked = true;
     }
+    else {
+        defaultEl.checked = false;
+    }
+
+    // CHANGE COLOR OF BOARDS
+    container.style.backgroundColor = detailEl.value;
+    gameBoard.style.backgroundColor = boardEl.value;
+    speed = all_details.speed;
 }
 
 // GET HIGH SCORE FROM LOCAL STORAGE
@@ -125,6 +135,11 @@ const snakeGame = () => {
     }
 
     gameBoard.innerHTML = html;
+
+    if(localStorage.getItem("details") != null) {
+        document.querySelector(".food").style.backgroundColor = foodEl.value;
+        document.querySelector(".head").style.backgroundColor = snakeEl.value;
+    }
 }
 
 // DIRECTION FUNCTION CODING
@@ -148,7 +163,7 @@ const direction = (e) => {
 }
 
 updateFoodPosition(); // calling...
-setIntervalId = setInterval(snakeGame, 125); // calling...
+setIntervalId = setInterval(snakeGame, speed); // calling...
 
 // KEY DOWN EVENT LISTNER FUNCTION
 document.addEventListener('keydown', direction);
@@ -179,4 +194,7 @@ set_btn.onclick = function() {
 
         localStorage.setItem("details", JSON.stringify(set_data));
     }
+
+    setBtn.click();
+    location.reload();
 }
