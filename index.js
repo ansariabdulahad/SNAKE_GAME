@@ -2,6 +2,8 @@
 let setBtn = document.querySelector(".setting-btn");
 let setBox = document.querySelector(".setting-box");
 let gameBoard = document.querySelector(".game-board");
+let scoreEl = document.querySelector(".score");
+let highScoreEl = document.querySelector(".high-score");
 
 // SETTING BUTTON CODING
 setBtn.addEventListener("click", () => {
@@ -16,6 +18,11 @@ let foodX = 13, foodY = 10;
 let sankeX = 5, snakeY = 10;
 let velocityX = 0, velocityY = 0;
 let setIntervalId;
+let score = 0;
+
+// GET HIGH SCORE FROM LOCAL STORAGE
+let highScore = localStorage.getItem("high-score") || 0;
+highScoreEl.innerHTML = `High Score : ${highScore}`;
 
 // UPDATE FOOD POSITION FUNCTION CODING
 const updateFoodPosition = () => {
@@ -51,6 +58,9 @@ const snakeGame = () => {
     if(sankeX == foodX && snakeY == foodY) {
         updateFoodPosition(); // calling...
         snakeBody.push([foodX, foodY]);
+        scoreEl.innerHTML = `Current Score : ${score++}`; // increment score
+        highScore = score >= highScore ? score : highScore;
+        localStorage.setItem("high-score", highScore);
     }
 
     // START REVERSE FOR LOOP FOR SNAKE BODY TO CONCAT
